@@ -1,10 +1,8 @@
-## **TETRAMESA IDENTIFIER** 
+# **TETRAMESA IDENTIFIER** 
 
 <img src="https://github.com/clarkevansteenderen/TetramesaID/blob/main/www/tetramesa_image.png" height = 250>
 
-### **USER GUIDE**
-
----
+## **USER GUIDE** :newspaper:
 
 *Created by:*
 
@@ -20,13 +18,13 @@
 
 *e-mail:* vsteenderen@gmail.com
 
----
+## DEPLOY THE APPLICATION :iphone:
 
 To deploy this application in R, run the following line in the console:
 
 `shiny::runGitHub("TetramesaID", "clarkevansteenderen")`
 
-**OVERVIEW**
+## **OVERVIEW**
 
 This program is designed for the quick identification of *Tetramesa* species (Hymenoptera: Eurytomidae), but can be applied to any taxon if the relevant 
 database of genetic sequences is supplied.
@@ -40,16 +38,14 @@ All the sequences in the provided databases will be available on [Genbank](https
 Disclaimer:
 The query sequences inputted by the user are not stored by this program, or used in a manner not specified in this document.
 
----
 
-**UPLOADING YOUR OWN FILE**
+## **UPLOADING YOUR OWN FILE**
 
 If you wish to upload your own sequences to serve as a database, a FASTA file is required
 (.fas extension), containing ***unaligned*** nucleotide sequences.
 
----
 
-**PASTING IN A QUERY SEQUENCE**
+## **PASTING IN A QUERY SEQUENCE**
 
 Insert an optional name into the "Enter sequence name" box. It is set as ">QUERY" by default.
 
@@ -62,9 +58,8 @@ For example, if the FASTA sequence is:
  
  Then only paste in the **AAAAAAGGGGGCCCC** part.
 
----
 
-**METHODS**
+## **METHODS**
 
 Agglomeration methods to select from are:
 
@@ -83,9 +78,7 @@ Wright ES (2016). Using DECIPHER v2.0 to Analyze Big Biological Sequence Data in
 
 [Link to paper](https://journal.r-project.org/archive/2016/RJ-2016-025/index.html)
 
----
-
-**EXTRA INFORMATION**
+## **EXTRA INFORMATION**
 
 Primers used for obtaining gene sequences:
 
@@ -127,9 +120,8 @@ associated Sycophila (Hymenoptera, Eurytomidae). Molecular Ecology Resources 10,
 
 [Link](https://pubmed.ncbi.nlm.nih.gov/21564988/)
 
----
 
-**OTHER R PACKAGES USED BY THIS PROGRAM**
+## **OTHER R PACKAGES USED BY THIS PROGRAM**
 
 [**seqinr**](https://cran.r-project.org/web/packages/seqinr/index.html)
 
@@ -137,7 +129,7 @@ associated Sycophila (Hymenoptera, Eurytomidae). Molecular Ecology Resources 10,
 
 [**shinyhelper**](https://cran.r-project.org/web/packages/shinyhelper/index.html)
 
----
 
-**GENBANK ACCESSION NUMBERS**
+## **GENBANK ACCESSION NUMBERS**
 
+TBA
