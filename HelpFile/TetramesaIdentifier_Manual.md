@@ -36,13 +36,6 @@ The query sequences inputted by the user are not stored by this program, or used
 
 ---
 
-**UPLOADING YOUR OWN FILE**
-
-If you wish to upload your own sequences to serve as a database, a FASTA file is required
-(.fas extension), containing ***unaligned*** nucleotide sequences.
-
----
-
 **PASTING IN A QUERY SEQUENCE**
 
 Insert an optional name into the "Enter sequence name" box. It is set as ">QUERY" by default.
@@ -134,6 +127,4 @@ associated Sycophila (Hymenoptera, Eurytomidae). Molecular Ecology Resources 10,
 ---
 
 **GENBANK ACCESSION NUMBERS**
-
-
 

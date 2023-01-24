@@ -32,7 +32,7 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                  br(),
                  
                  # list.files("Gene_databases/") is the name of the folder in this project's file (Dactylopius Identifier R/ DactylopiusID) which contains .fas files
-                 selectInput("selectfile","Select File", choice = c(list.files("Gene_databases/"), "Own file upload"), selected = "Own file upload" ),
+                 selectInput("selectfile","Select File", choice = c(list.files("Gene_databases/")) ),
                  fileInput("inFile", "Upload a .fas file"),
                  textInput("name", label = "Enter sequence name:", value = ">QUERY"),
                  textAreaInput("nuc_seq", label = "Enter nucleotide sequence:", placeholder = "e.g. AGCTTT", height = "250px"),

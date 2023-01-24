@@ -23,16 +23,7 @@ server <- function(input, output, session) {
   
   observe({
     
-    # the user can upload their own database of fasta files. Note that they must be unaligned
-    if(input$selectfile == "Own file upload"){
-    file1 = input$inFile
-    if (is.null(file1)) {
-      return(NULL)
-    } 
-    data1 = read.fasta(file1$datapath, seqtype = "DNA")
-    }
-    
-    else (data1 = read.fasta(file.path("Gene_databases/", input$selectfile)))
+    data1 = read.fasta(file.path("Gene_databases/", input$selectfile))
     
     observeEvent(input$submit, {
       
