@@ -1,12 +1,12 @@
-mypackages <- c("shiny", "shinyhelper", "magrittr", "DECIPHER", "seqinr", "shinyFiles", "shinythemes", "dendextend")
-checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
-if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
-if (!requireNamespace("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
+# mypackages <- c("shiny", "shinyhelper", "magrittr", "seqinr", "shinyFiles", "shinythemes", "dendextend")
+# checkpkg <- mypackages[!(mypackages %in% installed.packages()[,"Package"])]
+# if(length(checkpkg)) install.packages(checkpkg, dependencies = TRUE)
+# if (!requireNamespace("BiocManager", quietly = TRUE))
+#   install.packages("BiocManager")
+# 
+# BiocManager::install("DECIPHER")
 
-BiocManager::install("DECIPHER")
-
-
+library(shinyFiles)
 library(shiny)
 library(DECIPHER)
 library(seqinr)
@@ -14,6 +14,8 @@ library(dendextend)
 library(shinyhelper)
 library(magrittr) # allows you to use %>%
 library(shinythemes)
+library(janitor)
+library(shinyjs)
 
 ui <- fluidPage(theme = shinytheme("flatly"),
 
@@ -39,8 +41,18 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                  actionButton("submit", label = "Submit", style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
                  ),
   mainPanel() ),
-
-  tabPanel("View Tree", plotOutput("treePlot", height = "1600px"))
+  
+  tabPanel("View Tree", plotOutput("treePlot", height = "1600px")),
+  tabPanel("Results", 
+           #tags$head(tags$style(HTML("#blast_results tr:nth-child(n+1):nth-child(-n+10) {background-color: yellow;}"))),
+           #tags$head(tags$style(HTML("#blast_results tr:first-of-type {background-color: #ffc0cb;}"))),
+           tags$head(tags$style(HTML("#blast_results tbody tr:first-child:not(thead > tr) {background-color: #ffc0cb;}"))),
+           br(),
+           downloadButton("download_blast", "Download Results", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+           tableOutput("blast_results")
+           )
+  
+  
 
 )
   )
