@@ -12,21 +12,13 @@ library(shinyjs)
 
 server <- function(input, output, session) {
   
-  # this prints a dot to the cosole every 10 seconds so that the screen doesn't time out
-  autoInvalidate <- reactiveTimer(10000)
-  observe({
-    autoInvalidate()
-    cat(".")
-  })
-  
   observe_helpers(help_dir = "HelpFile")
   
   observe({
     
-    data1 = read.fasta(file.path("Gene_databases/", input$selectfile))
-    
     observeEvent(input$submit, {
       
+      data1 = read.fasta(file.path("Gene_databases/", input$selectfile))
       n = input$name
       
       q = input$nuc_seq
@@ -48,6 +40,8 @@ server <- function(input, output, session) {
       # read in the data as DNA sequences
       alignedseqs = readDNAStringSet(s4)
       
+
+      
       # this bit is for the progress bar
       progress <- Progress$new(session, min=1, max=2)
       on.exit(progress$close())
@@ -63,6 +57,7 @@ server <- function(input, output, session) {
       # align the sequences
       alignedseqs2 = AlignSeqs(alignedseqs)
       
+      
       # create a distance matrix
       d=DistanceMatrix(alignedseqs2, correction=input$distCorrection, verbose=T) 
   
@@ -74,8 +69,7 @@ server <- function(input, output, session) {
       clust = IdClusters(d, method=input$treeMethod, type = "dendrogram", cutoff=.05, showPlot=TRUE, myXStringSet=alignedseqs2, verbose=T)
       # convert the tree to a dendrogram (so that it can be manipulated (colour etc.))
       WriteDendrogram(x = clust)
-      # change the label text sizes
-      clust <- set(clust, "labels_cex", 0.75)
+      
       # make the input name red. grepl refers to the search for a pattern of text
       col_red <- ifelse(grepl(input$name, labels(clust)),"red", "black")
       # make the input name have a thick line (lwd size 10 here)
@@ -83,8 +77,42 @@ server <- function(input, output, session) {
       
       clust <- assign_values_to_leaves_edgePar(dend=clust, value = col_red, edgePar = "col")
       clust <- assign_values_to_leaves_edgePar(dend=clust, value = thickness, edgePar = "lwd")
+      # change the label text sizes
+      clust <- set(clust, "labels_cex", input$label_size )
       
       output$treePlot = renderPlot(plot(clust, horiz = T)) 
+      
+      observeEvent(input$redraw_tree, {
+        # change the label text sizes
+        clust <- set(clust, "labels_cex", input$label_size )
+        output$treePlot = renderPlot(plot(clust, horiz = T))
+      })
+      
+      # download tree as an image
+      output$download_tree <- downloadHandler(
+        filename = function (){paste("my_phylogeny", input$image_format, sep = '.')},
+        content = function (file){
+          if(input$image_format=="png"){
+            png(file, res = 300)
+            clust <- set(clust, "labels_cex", input$label_size )
+            plot(clust, horiz = T)
+            dev.off()
+          }
+          else if(input$image_format=="pdf"){
+            pdf(file)
+            clust <- set(clust, "labels_cex", input$label_size )
+            plot(clust, horiz = T)
+            dev.off()
+          }
+          else if(input$image_format=="svg"){
+            svg(file)
+            clust <- set(clust, "labels_cex", input$label_size )
+            plot(clust, horiz = T)
+            dev.off()
+          }
+        }
+      )
+      
       
       
       ######################
@@ -93,7 +121,7 @@ server <- function(input, output, session) {
       
       if(input$selectfile == "COI.fas") 
         source_mods = read.csv("source_mods/COI_source_mods.csv", header = TRUE)
-      if(input$selectfile == "28S.fas")
+      else if(input$selectfile == "28S.fas")
         source_mods = read.csv("source_mods/28S_source_mods.csv", header = TRUE)
       
       source_mods = janitor::clean_names(source_mods)
@@ -129,7 +157,7 @@ server <- function(input, output, session) {
       }
       
 
-query_dists = rename(query_dists, c(value =  "p-distance", percent_sim = "Similarity (%)",
+query_dists = rename(query_dists, c(value =  "p-distance", percent_sim = "Similarity",
                       genbank = "GenBank ID", organism = "Morphospecies",
                         country = "Country", host = "Host grass",
                         lat_lon = "GPS coordinates")

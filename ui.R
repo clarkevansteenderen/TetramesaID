@@ -42,13 +42,22 @@ ui <- fluidPage(theme = shinytheme("flatly"),
                  ),
   mainPanel() ),
   
-  tabPanel("View Tree", plotOutput("treePlot", height = "1600px")),
+  tabPanel("View Tree", br(),
+           fluidRow(
+             column(width = 2, 
+                    numericInput("label_size", "Label size", value = 0.5, min = 0, step = 0.1),
+                    actionButton("redraw_tree", "Redraw", style="color: #fff; background-color: #337ab7; border-color: #2e6da4")),
+             ),
+           br(),
+            # column(width = 2,
+           selectInput("image_format", "Image format:", choices = c("pdf", "png", "svg"), width = "150px"),
+           downloadButton("download_tree", "Download", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+            # ),
+           plotOutput("treePlot", height = "1600px")),
   tabPanel("Results", 
-           #tags$head(tags$style(HTML("#blast_results tr:nth-child(n+1):nth-child(-n+10) {background-color: yellow;}"))),
-           #tags$head(tags$style(HTML("#blast_results tr:first-of-type {background-color: #ffc0cb;}"))),
            tags$head(tags$style(HTML("#blast_results tbody tr:first-child:not(thead > tr) {background-color: #ffc0cb;}"))),
            br(),
-           downloadButton("download_blast", "Download Results", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
+           downloadButton("download_blast", "Download", style="color: #fff; background-color: #337ab7; border-color: #2e6da4"),
            tableOutput("blast_results")
            )
   
