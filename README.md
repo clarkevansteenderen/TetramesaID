@@ -132,4 +132,4 @@ associated Sycophila (Hymenoptera, Eurytomidae). Molecular Ecology Resources 10,
 
 ## **GENBANK ACCESSION NUMBERS**
 
-TBA
+See the associated tables in the **source_mods** directory.
