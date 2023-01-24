@@ -29,9 +29,9 @@ This program is designed for the quick identification of *Tetramesa* species (Hy
 database of genetic sequences is supplied.
 The user can either upload a database of their choice, or can select 
 from those provided under the 'Select File' drop down menu (COI and 28S markers). 
-The sequences provided were obtained by Clarke van Steenderen as part of his PhD degree. 
 A query nucleotide sequence is entered into the search box, and a phylogenetic tree is created where the query sequence 
-is matched to the database, and highlighted in red.
+is matched to the database, and highlighted in red. A table of matches can be found in the "Results" tab, where the closest match to the query sequence is highlighted
+in red. The table can be downloaded to the user's PC as a .csv file.
 All the sequences in the provided databases will be available on [Genbank](https://www.ncbi.nlm.nih.gov/genbank/) from July 31 2023.
 
 Disclaimer:
