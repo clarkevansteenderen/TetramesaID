@@ -6,17 +6,12 @@
 
 *Created by:*
 
-*Clarke van Steenderen*
-
-*Department of Zoology and Entomology*
-
-[*The Centre for Biological Control*](https://www.ru.ac.za/centreforbiologicalcontrol/)
-
-*Rhodes University, Grahamstown, Eastern Cape, South Africa*
-
-*2022*
-
-*e-mail:* vsteenderen@gmail.com
+*Clarke van Steenderen*  
+*Department of Zoology and Entomology*  
+[*The Centre for Biological Control*](https://www.ru.ac.za/centreforbiologicalcontrol/)  
+*Rhodes University, Grahamstown, Eastern Cape, South Africa*  
+*2022*  
+*e-mail:* vsteenderen@gmail.com  
 
 ## DEPLOY THE APPLICATION :iphone:
 
