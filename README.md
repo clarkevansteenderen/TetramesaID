@@ -24,6 +24,10 @@ To deploy this application in R, run the following line in the console:
 
 `shiny::runGitHub("TetramesaID", "clarkevansteenderen")`
 
+Or use this link in a web browser:
+
+https://clarkevansteenderen.shinyapps.io/TetramesaID/
+
 ## **OVERVIEW**
 
 This program is designed for the quick identification of *Tetramesa* species (Hymenoptera: Eurytomidae), but can be applied to any taxon if the relevant 
